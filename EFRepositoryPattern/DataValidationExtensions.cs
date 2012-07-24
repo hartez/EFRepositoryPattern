@@ -8,7 +8,7 @@ namespace EFRepository
 	{
 		public static string CollectErrors(this DbEntityValidationException ex)
 		{
-			if (ex.EntityValidationErrors == null || ex.EntityValidationErrors.Count() == 0)
+			if (ex.EntityValidationErrors == null || !ex.EntityValidationErrors.Any())
 			{
 				return String.Empty;
 			}
