@@ -53,9 +53,8 @@
   <ItemGroup>
     <Compile Include="DataValidationException.cs" />
     <Compile Include="DataValidationExtensions.cs" />
-    <Compile Include="IFilter.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="ISearchRepository.cs" />
+    <Compile Include="IFilterRepository.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

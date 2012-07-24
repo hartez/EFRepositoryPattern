@@ -1,4 +1,5 @@
 ﻿using System;
+using EFRepository;
 using Examples.Models;
 using Examples.Repositories;
 
@@ -23,12 +24,14 @@ namespace Examples
 				context.SaveChanges();	
 			}
 
-			Console.WriteLine("Posts created");
+			Console.WriteLine("Posts created\n");
 
-			Console.WriteLine("Listing posts created between 2012-01-03 and 2012-01-07");
+			Console.WriteLine("Listing posts created between 2012-01-03 and 2012-01-07 in reverse date order");
 			IPostRepository repo = new PostRepository(context);
 
-			var posts = repo.Search(new PostFilter(new DateTime(2012, 1, 3), new DateTime(2012, 1, 7), String.Empty));
+			var filter = new PostFilter(new DateTime(2012, 1, 3), new DateTime(2012, 1, 7), String.Empty);
+
+			var posts = repo.Filter(filter, Order<Post>.ByDescending(post => post.PublishDate));
 
 			foreach (var post in posts)
 			{
@@ -36,6 +39,7 @@ namespace Examples
 
 			}
 
+			Console.WriteLine("\nPress enter to exit");
 			Console.ReadLine();
 		}
 	}
