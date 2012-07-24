@@ -8,7 +8,5 @@ namespace EFRepository
 		TIdentity Save(T entity);
 
 		T Retrieve(TIdentity id);
-
-		IEnumerable<T> RetrieveAll();
 	}
 }
