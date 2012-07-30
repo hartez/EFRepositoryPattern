@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using EFRepository;
 using Examples.Models;
 using Examples.Repositories;
@@ -36,7 +37,6 @@ namespace Examples
 			foreach (var post in posts)
 			{
 				Console.WriteLine("{0} : {1}({2}) - {3}", post.ID, post.Title, post.PublishDate, post.Text);
-
 			}
 
 			Console.WriteLine("\nPress enter to exit");
