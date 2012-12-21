@@ -33,7 +33,12 @@ namespace Examples.Repositories
 			return _context.Posts.Find(id);
 		}
 
-		public IEnumerable<Post> Filter(int pageSize, int pageIndex, out int count, PostFilter filterBy = null, params Order<Post>[] orderBy)
+	    public Post RetrieveAll()
+	    {
+	        return _context.Posts;
+	    }
+
+	    public IEnumerable<Post> Filter(int pageSize, int pageIndex, out int count, PostFilter filterBy = null, params Order<Post>[] orderBy)
 		{
 			return QueryHelpers<Post>.Page(
 				QueryHelpers<Post>.BuildQuery(_context.Posts, FilterExpressionFrom(filterBy), orderBy), pageSize, pageIndex, out count);
