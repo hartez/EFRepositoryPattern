@@ -9,7 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Initial package release</releaseNotes>
-    <copyright>Copyright 2011</copyright>
+    <copyright>Copyright 2012</copyright>
     <tags>entityframework pattern repository codefirst</tags>
 	<dependencies>
 	  <dependency id="EntityFramework" version="4.2.0.0" />
