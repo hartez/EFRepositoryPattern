@@ -33,7 +33,7 @@ namespace Examples.Repositories
 			return _context.Posts.Find(id);
 		}
 
-	    public Post RetrieveAll()
+	    public IEnumerable<Post> RetrieveAll()
 	    {
 	        return _context.Posts;
 	    }
