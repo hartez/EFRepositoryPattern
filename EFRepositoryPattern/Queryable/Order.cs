@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace EFRepository
+namespace EFRepository.Queryable
 {
 	public class Order<T>
 	{

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
-using EFRepository;
+using EFRepository.Queryable;
 
-namespace EFRepositoryPattern.Tests.Repositories
+namespace EFRepository.Implementations
 {
     public class RetrieveAllRepository<T> : IRetrieveAll<T>
         where T : class

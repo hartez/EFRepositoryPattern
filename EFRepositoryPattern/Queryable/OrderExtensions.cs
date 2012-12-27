@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EFRepository
+namespace EFRepository.Queryable
 {
 	public static class OrderExtensions
 	{

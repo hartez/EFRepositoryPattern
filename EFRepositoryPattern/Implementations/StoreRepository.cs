@@ -1,8 +1,7 @@
 using System;
 using System.Data.Entity;
-using EFRepository;
 
-namespace EFRepositoryPattern.Tests.Repositories
+namespace EFRepository.Implementations
 {
     /// <summary>
     /// A simple generic Save implementation that will work for most of our EF entities

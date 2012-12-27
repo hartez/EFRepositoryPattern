@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using LinqKit;
 
-namespace EFRepository
+namespace EFRepository.Queryable
 {
 	public static class QueryHelpers<T>
 	{

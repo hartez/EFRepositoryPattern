@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace EFRepository
+namespace EFRepository.Queryable
 {
 	public static class QueryableExtensions
 	{
@@ -26,7 +26,7 @@ namespace EFRepository
 
 		private static IOrderedQueryable<T> ApplyOrder<T>(IQueryable<T> query, Order<T> order, string methodName)
 		{
-			var result = typeof(Queryable).GetMethods().Single(
+			var result = typeof(System.Linq.Queryable).GetMethods().Single(
 				method => method.Name == methodName
 				          && method.IsGenericMethodDefinition
 				          && method.GetGenericArguments().Length == 2

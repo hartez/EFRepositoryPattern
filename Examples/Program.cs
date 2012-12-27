@@ -1,5 +1,6 @@
 ﻿using System;
 using EFRepository;
+using EFRepository.Queryable;
 using EFRepositoryPattern.Tests.Models;
 using EFRepositoryPattern.Tests.Repositories;
 

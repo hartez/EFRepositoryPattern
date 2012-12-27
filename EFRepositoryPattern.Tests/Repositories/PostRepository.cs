@@ -1,27 +1,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using EFRepository;
+using EFRepository.Implementations;
+using EFRepository.Queryable;
 using EFRepositoryPattern.Tests.Models;
 using LinqKit;
 
 namespace EFRepositoryPattern.Tests.Repositories
 {
     public class PostRepository : IPostRepository
-	{
-		private readonly BlogContext _context;
+    {
+        private readonly BlogContext _context;
 
-        private readonly StoreRepository<Post, int> _storeRepository;
-        private readonly RetrieveRepository<Post, int> _retrieveRepository;
         private readonly RetrieveAllRepository<Post> _retrieveAllRepository;
+        private readonly RetrieveRepository<Post, int> _retrieveRepository;
+        private readonly StoreRepository<Post, int> _storeRepository;
+        private readonly MatchingRepository<Post, PostCriteria> _matchingRepository;
+        private readonly PagedRepository<Post, PostCriteria> _pagedRepository; 
 
-		public PostRepository(BlogContext context)
-		{
-			_context = context;
-		    _retrieveRepository = new RetrieveRepository<Post, int>(_context.Posts);
-		    _storeRepository = new StoreRepository<Post, int>(_context, _context.Posts, post => post.ID);
+        public PostRepository(BlogContext context)
+        {
+            _context = context;
+            _retrieveRepository = new RetrieveRepository<Post, int>(_context.Posts);
+            _storeRepository = new StoreRepository<Post, int>(_context, _context.Posts, post => post.ID);
             _retrieveAllRepository = new RetrieveAllRepository<Post>(_context.Posts);
-		}
+            _matchingRepository = new MatchingRepository<Post, PostCriteria>(_context.Posts, ExpressionFrom);
+            _pagedRepository = new PagedRepository<Post, PostCriteria>(_context.Posts, ExpressionFrom);
+        }
+
+        #region IPostRepository Members
 
         public int Save(Post entity)
         {
@@ -29,67 +36,69 @@ namespace EFRepositoryPattern.Tests.Repositories
         }
 
         public Post Retrieve(int id)
-		{
+        {
             return _retrieveRepository.Retrieve(id);
-		}
+        }
 
         public IEnumerable<Post> RetrieveAll(params Order<Post>[] orderBy)
-	    {
+        {
             return _retrieveAllRepository.RetrieveAll();
-	    }
+        }
 
-	    public IEnumerable<Post> Retrieve(int pageSize, int pageIndex, out int count, PostCriteria filterBy = null, params Order<Post>[] orderBy)
-		{
-			return QueryHelpers<Post>.Page(
-				QueryHelpers<Post>.BuildQuery(_context.Posts, ExpressionFrom(filterBy), orderBy), pageSize, pageIndex, out count);
-		}
+        public IEnumerable<Post> Retrieve(PostCriteria criteria = null, params Order<Post>[] orderBy)
+        {
+            return _matchingRepository.Retrieve(criteria, orderBy);
+        }
 
-		public IEnumerable<Post> Retrieve(PostCriteria filterBy = null, params Order<Post>[] orderBy)
-		{
-			return QueryHelpers<Post>.BuildQuery(_context.Posts, ExpressionFrom(filterBy), orderBy);
-		}
+        #endregion
 
-		private Expression<Func<Post, bool>> ExpressionFrom(PostCriteria filter)
-		{
-			// Start with our base expression - we want all posts
-			Expression<Func<Post, bool>> filterExpression = PredicateBuilder.True<Post>();
+        public IEnumerable<Post> Retrieve(int pageSize, int pageIndex, out int virtualCount, PostCriteria criteria = null,
+            params Order<Post>[] orderBy)
+        {
+            return _pagedRepository.Retrieve(pageSize, pageIndex, out virtualCount, criteria, orderBy);
+        }
 
-			if (filter == null)
-			{
-				return filterExpression;
-			}
+        private Expression<Func<Post, bool>> ExpressionFrom(PostCriteria filter)
+        {
+            // Start with our base expression - we want all posts
+            Expression<Func<Post, bool>> filterExpression = PredicateBuilder.True<Post>();
 
-			// If a title has been specified in the filter, add an expression to include
-			// any Post where the Title contains the value specified in the filter
-			if (!String.IsNullOrEmpty(filter.Title))
-			{
-				Expression<Func<Post, bool>> expr = post => post.Title.Contains(post.Title);
-				filterExpression = filterExpression.And(expr);
-			}
+            if(filter == null)
+            {
+                return filterExpression;
+            }
 
-			// If a 'Before' date is specified, add an expression to include posts which have
-			// a PublishedDate less than the date specified
-			if (filter.BeforeDate.HasValue)
-			{
-				var dt = filter.BeforeDate.Value;
-				Expression<Func<Post, bool>> expr =
-					post => post.PublishDate.CompareTo(dt) < 0;
+            // If a title has been specified in the filter, add an expression to include
+            // any Post where the Title contains the value specified in the filter
+            if(!String.IsNullOrEmpty(filter.Title))
+            {
+                Expression<Func<Post, bool>> expr = post => post.Title.Contains(post.Title);
+                filterExpression = filterExpression.And(expr);
+            }
 
-				filterExpression = filterExpression.And(expr);
-			}
+            // If a 'Before' date is specified, add an expression to include posts which have
+            // a PublishedDate less than the date specified
+            if(filter.BeforeDate.HasValue)
+            {
+                DateTime dt = filter.BeforeDate.Value;
+                Expression<Func<Post, bool>> expr =
+                    post => post.PublishDate.CompareTo(dt) < 0;
 
-			// If an 'After' date is specified, add an expression to include posts which have
-			// a PublishedDate greater than the date specified
-			if (filter.AfterDate.HasValue)
-			{
-				var dt = filter.AfterDate.Value;
-				Expression<Func<Post, bool>> expr =
-					post => post.PublishDate.CompareTo(dt) >= 0;
+                filterExpression = filterExpression.And(expr);
+            }
 
-				filterExpression = filterExpression.And(expr);
-			}
+            // If an 'After' date is specified, add an expression to include posts which have
+            // a PublishedDate greater than the date specified
+            if(filter.AfterDate.HasValue)
+            {
+                DateTime dt = filter.AfterDate.Value;
+                Expression<Func<Post, bool>> expr =
+                    post => post.PublishDate.CompareTo(dt) >= 0;
 
-			return filterExpression;
-		}
-	}
+                filterExpression = filterExpression.And(expr);
+            }
+
+            return filterExpression;
+        }
+    }
 }

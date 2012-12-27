@@ -1,4 +1,5 @@
 ﻿using EFRepository;
+using EFRepository.Interfaces;
 using EFRepositoryPattern.Tests.Models;
 
 namespace EFRepositoryPattern.Tests.Repositories

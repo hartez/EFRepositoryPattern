@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using EFRepository;
+using EFRepository.Queryable;
 using EFRepositoryPattern.Tests.Models;
 using EFRepositoryPattern.Tests.Repositories;
 using FluentAssertions;

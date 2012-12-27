@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using EFRepository.Queryable;
 
-namespace EFRepository
+namespace EFRepository.Interfaces
 {
     public interface IRetrieveMatching<T, in TCriteria>
         where TCriteria : class
