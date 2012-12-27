@@ -13,16 +13,14 @@ namespace EFRepositoryPattern.Tests.Repositories
         private readonly BlogContext _context;
 
         private readonly RetrieveAllRepository<Post> _retrieveAllRepository;
-        private readonly RetrieveRepository<Post, int> _retrieveRepository;
-        private readonly StoreRepository<Post, int> _storeRepository;
+        private readonly SimpleRepository<Post, int> _simpleRepository;
         private readonly MatchingRepository<Post, PostCriteria> _matchingRepository;
         private readonly PagedRepository<Post, PostCriteria> _pagedRepository; 
 
         public PostRepository(BlogContext context)
         {
             _context = context;
-            _retrieveRepository = new RetrieveRepository<Post, int>(_context.Posts);
-            _storeRepository = new StoreRepository<Post, int>(_context, _context.Posts, post => post.ID);
+            _simpleRepository = new SimpleRepository<Post, int>(_context, _context.Posts, post => post.ID);
             _retrieveAllRepository = new RetrieveAllRepository<Post>(_context.Posts);
             _matchingRepository = new MatchingRepository<Post, PostCriteria>(_context.Posts, ExpressionFrom);
             _pagedRepository = new PagedRepository<Post, PostCriteria>(_context.Posts, ExpressionFrom);
@@ -32,12 +30,12 @@ namespace EFRepositoryPattern.Tests.Repositories
 
         public int Save(Post entity)
         {
-            return _storeRepository.Save(entity);
+            return _simpleRepository.Save(entity);
         }
 
         public Post Retrieve(int id)
         {
-            return _retrieveRepository.Retrieve(id);
+            return _simpleRepository.Retrieve(id);
         }
 
         public IEnumerable<Post> RetrieveAll(params Order<Post>[] orderBy)

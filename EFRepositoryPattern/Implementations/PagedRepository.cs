@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using EFRepository.Interfaces;
 using EFRepository.Queryable;
 
-namespace EFRepositoryPattern.Tests.Repositories
+namespace EFRepository.Implementations
 {
     public class PagedRepository<T, TCriteria> : IRetrievePaged<T, TCriteria>
         where T : class

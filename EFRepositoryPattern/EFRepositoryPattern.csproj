@@ -52,13 +52,17 @@
   <ItemGroup>
     <Compile Include="DataValidationException.cs" />
     <Compile Include="DataValidationExtensions.cs" />
+    <Compile Include="Implementations\MatchingRepository.cs" />
+    <Compile Include="Implementations\PagedRepository.cs" />
     <Compile Include="Implementations\RetrieveAllRepository.cs" />
     <Compile Include="Implementations\RetrieveRepository.cs" />
+    <Compile Include="Implementations\SimpleRepository.cs" />
     <Compile Include="Implementations\StoreRepository.cs" />
     <Compile Include="IRetrieve.cs" />
     <Compile Include="IRetrievePaged.cs" />
     <Compile Include="IRetrieveAll.cs" />
     <Compile Include="IRetrieveMatching.cs" />
+    <Compile Include="ISimpleRepository.cs" />
     <Compile Include="IStore.cs" />
     <Compile Include="Queryable\Order.cs" />
     <Compile Include="Queryable\OrderExtensions.cs" />
