@@ -70,7 +70,10 @@
     <Compile Include="Repositories\IPostRepository.cs" />
     <Compile Include="Repositories\PostFilter.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\RetrieveAllRepository.cs" />
+    <Compile Include="Repositories\RetrieveRepository.cs" />
     <Compile Include="Repositories\StoreRepository.cs" />
+    <Compile Include="RetrieveAll.cs" />
     <Compile Include="StoreAndRetrieve.cs" />
   </ItemGroup>
   <ItemGroup>

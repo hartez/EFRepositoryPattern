@@ -12,11 +12,15 @@ namespace EFRepositoryPattern.Tests.Repositories
 		private readonly BlogContext _context;
 
         private readonly StoreRepository<Post, int> _storeRepository;
+        private readonly RetrieveRepository<Post, int> _retrieveRepository;
+        private readonly RetrieveAllRepository<Post> _retrieveAllRepository;
 
 		public PostRepository(BlogContext context)
 		{
 			_context = context;
-            _storeRepository = new StoreRepository<Post, int>(_context, _context.Posts, post => post.ID);
+		    _retrieveRepository = new RetrieveRepository<Post, int>(_context.Posts);
+		    _storeRepository = new StoreRepository<Post, int>(_context, _context.Posts, post => post.ID);
+            _retrieveAllRepository = new RetrieveAllRepository<Post>(_context.Posts);
 		}
 
         public int Save(Post entity)
@@ -26,12 +30,12 @@ namespace EFRepositoryPattern.Tests.Repositories
 
         public Post Retrieve(int id)
 		{
-			return _context.Posts.Find(id);
+            return _retrieveRepository.Retrieve(id);
 		}
 
 	    public IEnumerable<Post> RetrieveAll()
 	    {
-	        return _context.Posts;
+            return _retrieveAllRepository.RetrieveAll();
 	    }
 
 	    public IEnumerable<Post> Filter(int pageSize, int pageIndex, out int count, PostFilter filterBy = null, params Order<Post>[] orderBy)

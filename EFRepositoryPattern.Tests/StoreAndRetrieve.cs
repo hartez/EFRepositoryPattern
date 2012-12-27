@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using EFRepositoryPattern.Tests.Models;
 using EFRepositoryPattern.Tests.Repositories;
 using FluentAssertions;
@@ -9,19 +10,9 @@ namespace EFRepositoryPattern.Tests
     [TestFixture]
     public class StoreAndRetrieve
     {
-        private BlogContext _context;
-
-        [SetUp]
-        public void Setup()
-        {
-            _context = new BlogContext();
-
-            _context.Database.ExecuteSqlCommand("delete from posts");
-        }
-
         private int CreatePost(string title, string text, DateTime published)
         {
-            IPostRepository repo = new PostRepository(_context);
+            IPostRepository repo = new PostRepository(new BlogContext());
 
             var post = new Post
                            {
@@ -36,7 +27,7 @@ namespace EFRepositoryPattern.Tests
         [Test]
         public void StoreAndRetrievePost()
         {
-            IPostRepository repo = new PostRepository(_context);
+            IPostRepository repo = new PostRepository(new BlogContext());
 
             var r = new Random();
             var title = "Post Title " + r.Next();
