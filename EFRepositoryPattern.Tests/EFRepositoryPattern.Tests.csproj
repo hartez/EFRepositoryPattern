@@ -70,6 +70,8 @@
     <Compile Include="Repositories\IPostRepository.cs" />
     <Compile Include="Repositories\PostFilter.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\StoreRepository.cs" />
+    <Compile Include="StoreAndRetrieve.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="x64\SQLite.Interop.dll">

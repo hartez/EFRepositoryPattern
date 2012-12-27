@@ -7,28 +7,24 @@ using LinqKit;
 
 namespace EFRepositoryPattern.Tests.Repositories
 {
-	class PostRepository : IPostRepository
+    class PostRepository : IPostRepository
 	{
 		private readonly BlogContext _context;
+
+        private readonly StoreRepository<Post, int> _storeRepository;
 
 		public PostRepository(BlogContext context)
 		{
 			_context = context;
+            _storeRepository = new StoreRepository<Post, int>(_context, _context.Posts, post => post.ID);
 		}
 
-		public int Save(Post entity)
-		{
-			if(entity.ID == 0)
-			{
-				_context.Posts.Add(entity);
-			}
+        public int Save(Post entity)
+        {
+            return _storeRepository.Save(entity);
+        }
 
-			_context.SaveChanges();
-
-			return entity.ID;
-		}
-
-		public Post Retrieve(int id)
+        public Post Retrieve(int id)
 		{
 			return _context.Posts.Find(id);
 		}
