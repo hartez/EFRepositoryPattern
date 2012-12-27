@@ -14,9 +14,9 @@ namespace EFRepositoryPattern.Tests.Repositories
             _dbSet = dbSet;
         }
 
-        public IEnumerable<T> RetrieveAll()
+        public IEnumerable<T> RetrieveAll(params Order<T>[] @orderby)
         {
-            return _dbSet;
+            return QueryHelpers<T>.BuildQuery(_dbSet, orderby);
         }
     }
 }

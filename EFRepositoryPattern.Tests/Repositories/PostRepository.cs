@@ -33,7 +33,7 @@ namespace EFRepositoryPattern.Tests.Repositories
             return _retrieveRepository.Retrieve(id);
 		}
 
-	    public IEnumerable<Post> RetrieveAll()
+        public IEnumerable<Post> RetrieveAll(params Order<Post>[] orderBy)
 	    {
             return _retrieveAllRepository.RetrieveAll();
 	    }

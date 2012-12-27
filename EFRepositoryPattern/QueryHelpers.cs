@@ -19,7 +19,13 @@ namespace EFRepository
 			return query.Skip(pageSize * pageIndex).Take(pageSize);
 		}
 
-		public static IQueryable<T> BuildQuery(IQueryable<T> query,
+	    public static IQueryable<T> BuildQuery(IQueryable<T> query,
+	        params Order<T>[] orderBy)
+	    {
+	        return BuildQuery(query, null, orderBy);
+	    }
+
+	    public static IQueryable<T> BuildQuery(IQueryable<T> query,
 		                                       Expression<Func<T, bool>> filterBy,
 		                                       params Order<T>[] orderBy)
 		{
