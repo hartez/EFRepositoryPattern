@@ -53,8 +53,9 @@
     <Compile Include="DataValidationException.cs" />
     <Compile Include="DataValidationExtensions.cs" />
     <Compile Include="IRetrieve.cs" />
-    <Compile Include="IFilterRepository.cs" />
+    <Compile Include="IRetrievePaged.cs" />
     <Compile Include="IRetrieveAll.cs" />
+    <Compile Include="IRetrieveMatching.cs" />
     <Compile Include="IStore.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderExtensions.cs" />

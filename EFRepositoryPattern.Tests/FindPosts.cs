@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using EFRepository;
@@ -46,14 +45,9 @@ namespace EFRepositoryPattern.Tests
             Debug.WriteLine("Listing posts created between 2012-01-03 and 2012-01-07 in reverse date order");
             IPostRepository repo = new PostRepository(new BlogContext());
 
-            var filter = new PostFilter(new DateTime(2012, 1, 3), new DateTime(2012, 1, 7), String.Empty);
+            var criteria = new PostCriteria(new DateTime(2012, 1, 3), new DateTime(2012, 1, 7), String.Empty);
 
-            IEnumerable<Post> posts = repo.Filter(filter, Order<Post>.ByDescending(post => post.PublishDate));
-
-            foreach(Post post in posts)
-            {
-                Debug.WriteLine("{0} : {1}({2}) - {3}", post.ID, post.Title, post.PublishDate, post.Text);
-            }
+            var posts = repo.Retrieve(criteria, Order<Post>.ByDescending(post => post.PublishDate));
 
             posts.Count().Should().Be(4);
         }

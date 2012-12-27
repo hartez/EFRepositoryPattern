@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq.Expressions;
 using EFRepository;
-using Examples.Models;
-using Examples.Repositories;
+using EFRepositoryPattern.Tests.Models;
+using EFRepositoryPattern.Tests.Repositories;
 
 namespace Examples
 {
@@ -30,9 +29,9 @@ namespace Examples
 			Console.WriteLine("Listing posts created between 2012-01-03 and 2012-01-07 in reverse date order");
 			IPostRepository repo = new PostRepository(context);
 
-			var filter = new PostFilter(new DateTime(2012, 1, 3), new DateTime(2012, 1, 7), String.Empty);
+			var criteria = new PostCriteria(new DateTime(2012, 1, 3), new DateTime(2012, 1, 7), String.Empty);
 
-			var posts = repo.Filter(filter, Order<Post>.ByDescending(post => post.PublishDate));
+			var posts = repo.Retrieve(criteria, Order<Post>.ByDescending(post => post.PublishDate));
 
 			foreach (var post in posts)
 			{

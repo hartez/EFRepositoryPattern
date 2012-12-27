@@ -62,16 +62,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\BlogContext.cs" />
-    <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\Post.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IPostRepository.cs" />
-    <Compile Include="Repositories\PostFilter.cs" />
-    <Compile Include="Repositories\PostRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EFRepositoryPattern.Tests\EFRepositoryPattern.Tests.csproj">
+      <Project>{ABCF4C72-3D47-4F41-9C47-5A6DD8AA3B82}</Project>
+      <Name>EFRepositoryPattern.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EFRepositoryPattern\EFRepositoryPattern.csproj">
       <Project>{B5419484-3F32-4386-ADF5-5BB7D00EC055}</Project>
       <Name>EFRepositoryPattern</Name>

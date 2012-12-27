@@ -7,7 +7,7 @@ using LinqKit;
 
 namespace EFRepositoryPattern.Tests.Repositories
 {
-    class PostRepository : IPostRepository
+    public class PostRepository : IPostRepository
 	{
 		private readonly BlogContext _context;
 
@@ -38,18 +38,18 @@ namespace EFRepositoryPattern.Tests.Repositories
             return _retrieveAllRepository.RetrieveAll();
 	    }
 
-	    public IEnumerable<Post> Filter(int pageSize, int pageIndex, out int count, PostFilter filterBy = null, params Order<Post>[] orderBy)
+	    public IEnumerable<Post> Retrieve(int pageSize, int pageIndex, out int count, PostCriteria filterBy = null, params Order<Post>[] orderBy)
 		{
 			return QueryHelpers<Post>.Page(
-				QueryHelpers<Post>.BuildQuery(_context.Posts, FilterExpressionFrom(filterBy), orderBy), pageSize, pageIndex, out count);
+				QueryHelpers<Post>.BuildQuery(_context.Posts, ExpressionFrom(filterBy), orderBy), pageSize, pageIndex, out count);
 		}
 
-		public IEnumerable<Post> Filter(PostFilter filterBy = null, params Order<Post>[] orderBy)
+		public IEnumerable<Post> Retrieve(PostCriteria filterBy = null, params Order<Post>[] orderBy)
 		{
-			return QueryHelpers<Post>.BuildQuery(_context.Posts, FilterExpressionFrom(filterBy), orderBy);
+			return QueryHelpers<Post>.BuildQuery(_context.Posts, ExpressionFrom(filterBy), orderBy);
 		}
 
-		public Expression<Func<Post, bool>> FilterExpressionFrom(PostFilter filter)
+		private Expression<Func<Post, bool>> ExpressionFrom(PostCriteria filter)
 		{
 			// Start with our base expression - we want all posts
 			Expression<Func<Post, bool>> filterExpression = PredicateBuilder.True<Post>();
