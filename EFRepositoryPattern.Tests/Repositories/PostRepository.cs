@@ -56,47 +56,39 @@ namespace EFRepositoryPattern.Tests.Repositories
             return _pagedRepository.Retrieve(pageSize, pageIndex, out virtualCount, criteria, orderBy);
         }
 
-        private Expression<Func<Post, bool>> ExpressionFrom(PostCriteria filter)
+        private Expression<Func<Post, bool>> ExpressionFrom(PostCriteria criteria)
         {
             // Start with our base expression - we want all posts
-            Expression<Func<Post, bool>> filterExpression = PredicateBuilder.True<Post>();
+            //Expression<Func<Post, bool>> criteriaExpression = PredicateBuilder.True<Post>();
+            var criteriaExpression = PredicateBuilder.True<Post>();
 
-            if(filter == null)
+            if(criteria == null)
             {
-                return filterExpression;
+                return criteriaExpression;
             }
 
             // If a title has been specified in the filter, add an expression to include
             // any Post where the Title contains the value specified in the filter
-            if(!String.IsNullOrEmpty(filter.Title))
+            if(!String.IsNullOrEmpty(criteria.Title))
             {
-                Expression<Func<Post, bool>> expr = post => post.Title.Contains(post.Title);
-                filterExpression = filterExpression.And(expr);
+                criteriaExpression = criteriaExpression.And(post => post.Title.Contains(criteria.Title));
             }
 
             // If a 'Before' date is specified, add an expression to include posts which have
             // a PublishedDate less than the date specified
-            if(filter.BeforeDate.HasValue)
+            if(criteria.BeforeDate.HasValue)
             {
-                DateTime dt = filter.BeforeDate.Value;
-                Expression<Func<Post, bool>> expr =
-                    post => post.PublishDate.CompareTo(dt) < 0;
-
-                filterExpression = filterExpression.And(expr);
+                criteriaExpression = criteriaExpression.And(post => post.PublishDate.CompareTo(criteria.BeforeDate.Value) < 0);
             }
 
             // If an 'After' date is specified, add an expression to include posts which have
             // a PublishedDate greater than the date specified
-            if(filter.AfterDate.HasValue)
+            if(criteria.AfterDate.HasValue)
             {
-                DateTime dt = filter.AfterDate.Value;
-                Expression<Func<Post, bool>> expr =
-                    post => post.PublishDate.CompareTo(dt) >= 0;
-
-                filterExpression = filterExpression.And(expr);
+                criteriaExpression = criteriaExpression.And(post => post.PublishDate.CompareTo(criteria.AfterDate.Value) >= 0);
             }
 
-            return filterExpression;
+            return criteriaExpression;
         }
     }
 }

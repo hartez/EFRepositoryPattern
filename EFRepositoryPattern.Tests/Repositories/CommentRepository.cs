@@ -22,7 +22,7 @@ namespace EFRepositoryPattern.Tests.Repositories
 
         private Expression<Func<Comment, bool>> ExpressionBuilder(CommentCriteria commentCriteria)
         {
-            var criteriaExpression = ExpressionExtensions.GenerateBasePredicate<Comment>();
+            var criteriaExpression = PredicateBuilder.True<Comment>();
 
             if (commentCriteria == null)
             {
@@ -31,8 +31,7 @@ namespace EFRepositoryPattern.Tests.Repositories
 
             if(commentCriteria.PostId.HasValue)
             {
-                Expression<Func<Comment, bool>> expr = comment => comment.PostID == commentCriteria.PostId.Value;
-                criteriaExpression = criteriaExpression.And(expr);
+                criteriaExpression = criteriaExpression.And(comment => comment.PostID == commentCriteria.PostId.Value);
             }
 
             return criteriaExpression;

@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="DataValidationException.cs" />
     <Compile Include="DataValidationExtensions.cs" />
-    <Compile Include="Implementations\ExpressionExtensions.cs" />
     <Compile Include="Implementations\MatchingRepository.cs" />
     <Compile Include="Implementations\PagedRepository.cs" />
     <Compile Include="Implementations\RetrieveAllRepository.cs" />

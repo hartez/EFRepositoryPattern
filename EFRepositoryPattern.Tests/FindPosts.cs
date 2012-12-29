@@ -51,6 +51,19 @@ namespace EFRepositoryPattern.Tests
         }
 
         [Test]
+        public void ByTitle()
+        {
+            IPostRepository repo = new PostRepository(new BlogContext());
+
+            var criteria = new PostCriteria(null, null, "9");
+
+            var posts = repo.Retrieve(criteria, Order<Post>.ByDescending(post => post.PublishDate));
+
+            posts.Count().Should().Be(1);
+            posts.First().Title.Should().Be("Post Title 9");
+        }
+
+        [Test]
         public void BetweenDatesUsingSQL()
         {
             IPostRepository repo = new AlternatePostRepository(new BlogContext());
