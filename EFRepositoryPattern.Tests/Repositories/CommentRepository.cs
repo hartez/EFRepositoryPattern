@@ -20,7 +20,7 @@ namespace EFRepositoryPattern.Tests.Repositories
             _pagedRepository = new PagedRepository<Comment, CommentCriteria>(context.Comments, ExpressionBuilder);
         }
 
-        private Expression<Func<Comment, bool>> ExpressionBuilder(CommentCriteria commentCriteria)
+        private static Expression<Func<Comment, bool>> ExpressionBuilder(CommentCriteria commentCriteria)
         {
             var criteriaExpression = PredicateBuilder.True<Comment>();
 

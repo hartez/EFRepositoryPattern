@@ -22,8 +22,8 @@ namespace EFRepositoryPattern.Tests.Repositories
             _context = context;
             _simpleRepository = new SimpleRepository<Post, int>(_context, _context.Posts, post => post.ID);
             _retrieveAllRepository = new RetrieveAllRepository<Post>(_context.Posts);
-            _matchingRepository = new MatchingRepository<Post, PostCriteria>(_context.Posts, ExpressionFrom);
-            _pagedRepository = new PagedRepository<Post, PostCriteria>(_context.Posts, ExpressionFrom);
+            _matchingRepository = new MatchingRepository<Post, PostCriteria>(_context.Posts, ExpressionBuilder);
+            _pagedRepository = new PagedRepository<Post, PostCriteria>(_context.Posts, ExpressionBuilder);
         }
 
         #region IPostRepository Members
@@ -56,7 +56,7 @@ namespace EFRepositoryPattern.Tests.Repositories
             return _pagedRepository.Retrieve(pageSize, pageIndex, out virtualCount, criteria, orderBy);
         }
 
-        private Expression<Func<Post, bool>> ExpressionFrom(PostCriteria criteria)
+        private static Expression<Func<Post, bool>> ExpressionBuilder(PostCriteria criteria)
         {
             // Start with our base expression - we want all posts
             //Expression<Func<Post, bool>> criteriaExpression = PredicateBuilder.True<Post>();
