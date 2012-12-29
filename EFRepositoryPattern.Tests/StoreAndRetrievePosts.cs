@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using EFRepository;
 using EFRepositoryPattern.Tests.Models;
 using EFRepositoryPattern.Tests.Repositories;
@@ -9,7 +11,7 @@ using NUnit.Framework;
 namespace EFRepositoryPattern.Tests
 {
     [TestFixture]
-    public class StoreAndRetrieve
+    public class StoreAndRetrievePosts
     {
         private int CreatePost(string title, string text, DateTime published)
         {

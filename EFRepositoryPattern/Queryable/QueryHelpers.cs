@@ -34,6 +34,8 @@ namespace EFRepository.Queryable
 				query = query.AsExpandable().Where(filterBy);
 			}
 
+	        query = query.OrderByDescending(x => 1);
+
 			if (orderBy != null && orderBy.Length > 0)
 			{
 				if (orderBy[0].Descending)
