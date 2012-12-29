@@ -10,7 +10,7 @@ namespace EFRepositoryPattern.Tests.Repositories
 {
     public class PostRepository : IPostRepository
     {
-        private readonly BlogContext _context;
+        protected readonly BlogContext _context;
 
         private readonly RetrieveAllRepository<Post> _retrieveAllRepository;
         private readonly SimpleRepository<Post, int> _simpleRepository;
@@ -43,7 +43,7 @@ namespace EFRepositoryPattern.Tests.Repositories
             return _retrieveAllRepository.RetrieveAll();
         }
 
-        public IEnumerable<Post> Retrieve(PostCriteria criteria = null, params Order<Post>[] orderBy)
+        public virtual IEnumerable<Post> Retrieve(PostCriteria criteria = null, params Order<Post>[] orderBy)
         {
             return _matchingRepository.Retrieve(criteria, orderBy);
         }

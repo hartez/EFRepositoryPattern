@@ -68,6 +68,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AlternatePostRepository.cs" />
     <Compile Include="Repositories\CommentCriteria.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\IPostRepository.cs" />
