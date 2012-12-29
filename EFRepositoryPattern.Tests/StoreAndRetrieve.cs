@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using EFRepository;
 using EFRepositoryPattern.Tests.Models;
 using EFRepositoryPattern.Tests.Repositories;
 using FluentAssertions;
@@ -41,6 +42,20 @@ namespace EFRepositoryPattern.Tests
             post.Title.Should().Be(title);
             post.Text.Should().Be(text);
             post.PublishDate.Should().Be(publishDate);
+        }
+
+        [Test]
+        public void ExpectDataValidationException()
+        {
+            CommentRepository repo = new CommentRepository(new BlogContext());
+
+            var comment = new Comment();
+            comment.PostID = -1;
+            comment.Text = "This shouldn't be saveable";
+
+            Action save = () => repo.Save(comment);
+
+            save.ShouldThrow<DataValidationException>();
         }
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 
 namespace EFRepositoryPattern.Tests.Models {
     public class Post {

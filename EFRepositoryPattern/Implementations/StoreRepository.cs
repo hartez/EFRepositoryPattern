@@ -1,5 +1,7 @@
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace EFRepository.Implementations
 {
@@ -30,14 +32,25 @@ namespace EFRepository.Implementations
             // simply check whether the identity value is set to its default. If so, then it's new
             // and needs to be added to the context. If not, we assume that it's already in the context
             // and we just need to save the changes. 
-            if(_id(entity).Equals(default(TIdentity)))
+            try
             {
-                _dbSet.Add(entity);
+                if (_id(entity).Equals(default(TIdentity)))
+                {
+                    _dbSet.Add(entity);
+                }
+
+                _context.SaveChanges();
+
+                return _id(entity);
             }
-
-            _context.SaveChanges();
-
-            return _id(entity);
+            catch (DbUpdateException ex)
+            {
+                throw new DataValidationException("An error occurred", ex);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw new DataValidationException(ex.CollectErrors(), ex);
+            }
         }
     }
 }

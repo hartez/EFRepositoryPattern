@@ -10,6 +10,5 @@ namespace EFRepositoryPattern.Tests.Repositories
         IRetrieveAll<Post>,
 	    IRetrieveMatching<Post, PostCriteria>
 	{
-
 	}
 }

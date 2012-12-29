@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using EFRepository.Queryable;
 
-namespace EFRepository.Interfaces
+namespace EFRepository
 {
     public interface IRetrievePaged<T, in TCriteria>
         where TCriteria : class
