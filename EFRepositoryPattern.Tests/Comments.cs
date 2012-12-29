@@ -51,7 +51,7 @@ namespace EFRepositoryPattern.Tests
             int pageSize = 5;
 
             var criteria = new CommentCriteria() {PostId = postId};
-            var order = new Order<Comment>(c => c.Text, false);
+            var order =  Order<Comment>.By(c => c.Text);
 
             var page0 = repo.Retrieve(pageSize, 0, out virtualItemCount, criteria, order).ToList();
             virtualItemCount.Should().Be(12);
@@ -80,7 +80,7 @@ namespace EFRepositoryPattern.Tests
             int virtualItemCount;
             int pageSize = 5;
             var criteria = new CommentCriteria() { PostId = postId };
-            var order = new Order<Comment>(c => c.Text, false);
+            var order = Order<Comment>.By(c => c.Text);
 
             var page0 = repo.Retrieve(pageSize, 0, out virtualItemCount, criteria, order).ToList();
             page0.Count().Should().Be(5);
