@@ -34,8 +34,6 @@ namespace EFRepository.Queryable
 				query = query.AsExpandable().Where(filterBy);
 			}
 
-	        query = query.OrderByDescending(x => 1);
-
 			if (orderBy != null && orderBy.Length > 0)
 			{
 				if (orderBy[0].Descending)
@@ -58,6 +56,12 @@ namespace EFRepository.Queryable
 						query = (query as IOrderedQueryable<T>).ThenBy(orderBy[n]);
 					}
 				}
+			}
+			else
+			{
+			    // We don't really care about the order, but for paging to work we need
+                // to have the results "sorted". So we'll add a dummy sort that doesn't do anything
+                query = query.OrderByDescending(x => 1);
 			}
 
 			return query;
