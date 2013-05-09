@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial package release</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>entityframework pattern repository codefirst</tags>
+	<dependencies>
+    <group targetFramework="net40">
+      <dependency id="EntityFramework" version="4.2.0.0" />
+      <dependency id="LinqKit" version="1.0" />
+    </group>
+    <group targetFramework="net45">
+      <dependency id="EntityFramework" version="5.0.0" />
+      <dependency id="LinqKit" version="1.0" />
+    </group>
+  </dependencies>
+  </metadata>
+  <files>
+    <file src="EFRepositoryPattern\bin\Release\EFRepository.dll" target="lib\net40" />
+    <file src="EFRepositoryPattern.4.5\bin\Release\EFRepository.dll" target="lib\net45" />
+  </files>
+</package>

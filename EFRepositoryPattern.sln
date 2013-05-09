@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFRepositoryPattern", "EFRepositoryPattern\EFRepositoryPattern.csproj", "{B5419484-3F32-4386-ADF5-5BB7D00EC055}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A4510025-E2B4-458A-860E-EC8459470A7E}"
@@ -10,6 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A45100
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFRepositoryPattern.Tests", "EFRepositoryPattern.Tests\EFRepositoryPattern.Tests.csproj", "{ABCF4C72-3D47-4F41-9C47-5A6DD8AA3B82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFRepositoryPattern.4.5", "EFRepositoryPattern.4.5\EFRepositoryPattern.4.5.csproj", "{702D8207-9C05-43F2-A201-90D012142622}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66B897DF-F24C-414A-9837-A50503D95E39}"
+	ProjectSection(SolutionItems) = preProject
+		EFRepositoryPattern.nuspec = EFRepositoryPattern.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +48,16 @@ Global
 		{ABCF4C72-3D47-4F41-9C47-5A6DD8AA3B82}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{ABCF4C72-3D47-4F41-9C47-5A6DD8AA3B82}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{ABCF4C72-3D47-4F41-9C47-5A6DD8AA3B82}.Release|x86.ActiveCfg = Release|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Release|Any CPU.Build.0 = Release|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{702D8207-9C05-43F2-A201-90D012142622}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
