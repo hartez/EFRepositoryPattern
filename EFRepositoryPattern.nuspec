@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>EFRepository</id>
-    <version>1.4.1.0</version>
+    <version>1.4.2.0</version>
     <title>EFRepositoryPattern</title>
     <authors>E.Z. Hart and Traceur LLC</authors>
     <owners>E.Z. Hart and Traceur LLC</owners>
@@ -11,6 +11,16 @@
     <releaseNotes>Added .NET 4.5 version to package</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>entityframework pattern repository codefirst</tags>
+    <dependencies>
+      <group targetFramework="net40">
+        <dependency id="EntityFramework" version="4.2.0.0" />
+        <dependency id="LinqKit" version="1.0" />
+      </group>
+      <group targetFramework="net45">
+        <dependency id="EntityFramework" version="5.0.0" />
+        <dependency id="LinqKit" version="1.0" />
+      </group>
+    </dependencies>
   </metadata>
   <files>
     <file src="EFRepositoryPattern\bin\Release\EFRepository.dll" target="lib\net40" />
