@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>EFRepository</id>
-    <version>1.4.2.0</version>
+    <version>1.5.0.0</version>
     <title>EFRepositoryPattern</title>
     <authors>E.Z. Hart and Traceur LLC</authors>
     <owners>E.Z. Hart and Traceur LLC</owners>
