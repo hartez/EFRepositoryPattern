@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Linq;
 using System.Linq.Expressions;
 using EFRepository.Queryable;
 
@@ -10,10 +10,10 @@ namespace EFRepository.Implementations
         where T : class
         where TCriteria : class
     {
-        private readonly DbSet<T> _dbSet;
+        private readonly IQueryable<T> _dbSet;
         private readonly Func<TCriteria, Expression<Func<T, bool>>> _expressionBuilder;
 
-        public MatchingRepository(DbSet<T> dbSet, Func<TCriteria, Expression<Func<T, bool>>> expressionBuilder)
+        public MatchingRepository(IQueryable<T> dbSet, Func<TCriteria, Expression<Func<T, bool>>> expressionBuilder)
         {
             _dbSet = dbSet;
             _expressionBuilder = expressionBuilder;
