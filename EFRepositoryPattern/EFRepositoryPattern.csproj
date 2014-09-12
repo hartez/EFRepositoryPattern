@@ -60,6 +60,7 @@
     <Compile Include="Implementations\SimpleRepository.cs" />
     <Compile Include="Implementations\StoreRepository.cs" />
     <Compile Include="IRetrieve.cs" />
+    <Compile Include="IRetrieveBlargh.cs" />
     <Compile Include="IRetrievePaged.cs" />
     <Compile Include="IRetrieveAll.cs" />
     <Compile Include="IRetrieveMatching.cs" />
@@ -73,7 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="EFRepositoryPattern.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

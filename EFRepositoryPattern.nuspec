@@ -4,12 +4,12 @@
     <id>EFRepository</id>
     <version>1.5.0.0</version>
     <title>EFRepositoryPattern</title>
-    <authors>E.Z. Hart and Traceur LLC</authors>
-    <owners>E.Z. Hart and Traceur LLC</owners>
+    <authors>E.Z. Hart</authors>
+    <owners>E.Z. Hart</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A library to aid in implementing a good Entity Framework-based Repository Pattern</description>
     <releaseNotes>Added .NET 4.5 version to package</releaseNotes>
-    <copyright>Copyright 2013</copyright>
+    <copyright>Copyright 2013-2014</copyright>
     <tags>entityframework pattern repository codefirst</tags>
     <dependencies>
       <group targetFramework="net40">
